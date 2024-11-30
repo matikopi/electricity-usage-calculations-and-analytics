@@ -1,0 +1,9 @@
+aiohttp
+pandas
+asyncio
+aiofiles
+mashumaro
+PyJWT
+numpy
+pkce
+git+https://github.com/GuyKh/py-iec-api.git@main#egg=iec-api
