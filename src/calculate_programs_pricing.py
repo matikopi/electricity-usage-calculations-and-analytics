@@ -5,9 +5,9 @@ PRICE_VALUE_COLUMN= "value"
 NOGA_RATE_COLUMN = "noga_rate_nis_to_kwh"
 DATE_COLUMN = "date"
 
-def get_noga_rate_to_merge_with_user_usage(path: str, date_column: str = "date", noga_rate_column: str = NOGA_RATE_COLUMN) -> pd.DataFrame:
-    with open(path, 'r') as file:
-        data = json.load(file)
+def get_noga_rate_to_merge_with_user_usage(data: dict, date_column: str = "date", noga_rate_column: str = NOGA_RATE_COLUMN) -> pd.DataFrame:
+    # with open(path, 'r') as file:
+    #     data = json.load(file)
 
     # Convert the JSON into a DataFrame
     rows = []
