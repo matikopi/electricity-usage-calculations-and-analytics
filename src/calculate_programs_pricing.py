@@ -1,14 +1,30 @@
 import pandas as pd
+import json
 
 PRICE_VALUE_COLUMN= "value"
 NOGA_RATE_COLUMN = "noga_rate_nis_to_kwh"
 DATE_COLUMN = "date"
 
 def get_noga_rate_to_merge_with_user_usage(path: str, date_column: str = "date", noga_rate_column: str = NOGA_RATE_COLUMN) -> pd.DataFrame:
-    # load noga rate
-    noga_rate = pd.read_excel(path)
+    with open(path, 'r') as file:
+        data = json.load(file)
+
+    # Convert the JSON into a DataFrame
+    rows = []
+    for day_date in data:
+        date = day_date["date"]
+        for entry in day_date["smpData"]:
+            entry["date"] = date  # Add the date as a column
+            rows.append(entry)
+
+    # Create the DataFrame
+    noga_rate = pd.DataFrame(rows)
+    noga_rate[date_column] = pd.to_datetime(noga_rate["date"] + ' ' + noga_rate["time"], dayfirst=True)
+
     noga_rate[date_column] = pd.to_datetime(noga_rate[date_column]).dt.tz_localize('UTC+03:00')
     noga_rate = noga_rate.sort_values(by=date_column, ascending=True)
+    noga_rate[NOGA_RATE_COLUMN] = noga_rate["day_Ahead_Constrained_Smp"]
+    noga_rate = noga_rate[[date_column, NOGA_RATE_COLUMN,]]
 
     # Set the 'date' column as the DataFrame index
     noga_rate.set_index(date_column, inplace=True)
