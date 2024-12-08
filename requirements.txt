@@ -6,5 +6,4 @@ mashumaro
 PyJWT
 numpy
 pkce
-fastparquet
 git+https://github.com/SL1994-design/py-iec-api.git@allow_none_new_fields_temp#egg=iec-api
