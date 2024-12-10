@@ -55,7 +55,7 @@ def add_twenty_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column:
     if new_pricing_column_name in df:
         raise ValueError(f"{new_pricing_column_name} column already exists in dataframe.")
 
-    df[new_pricing_column_name] = (df[price_value_column] * df[noga_rate_column])
+    df[new_pricing_column_name] = (df[price_value_column] * 0.62)
     df.loc[((df[date_column].dt.hour >= 23) | (df[date_column].dt.hour < 7)), new_pricing_column_name] = df.loc[(
             (df[date_column].dt.hour >= 23) | (df[date_column].dt.hour < 7)), price_value_column] * 0.8 * df[noga_rate_column]
     return df
@@ -65,7 +65,7 @@ def add_fifteen_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column
     if new_pricing_column_name in df:
         raise ValueError(f"{new_pricing_column_name} column already exists in dataframe.")
 
-    df[new_pricing_column_name] = (df[price_value_column] * df[noga_rate_column])
+    df[new_pricing_column_name] = (df[price_value_column] * 0.62)
     df.loc[
         (df[date_column].dt.day_of_week != 6)
         & (df[date_column].dt.day_of_week != 7)
@@ -84,7 +84,7 @@ def add_eighteen_percent_off_noga_rate_price(df: pd.DataFrame, price_value_colum
     if new_pricing_column_name in df:
         raise ValueError(f"{new_pricing_column_name} column already exists in dataframe.")
 
-    df[new_pricing_column_name] = (df[price_value_column] * df[noga_rate_column])
+    df[new_pricing_column_name] = (df[price_value_column] * 0.62)
     df.loc[((df[date_column].dt.hour >= 14) & (df[date_column].dt.hour < 22)), new_pricing_column_name] = df.loc[(
                 (df[date_column].dt.hour >= 14) & (df[date_column].dt.hour < 22)), price_value_column] * 0.82 * df[
                                                                                                noga_rate_column]
