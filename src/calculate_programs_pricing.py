@@ -56,7 +56,7 @@ def add_seven_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column: 
     new_pricing_column_name = "7_off_noga_rate"
     if new_pricing_column_name in df:
         raise ValueError(f"{new_pricing_column_name} column already exists in dataframe.")
-    df[new_pricing_column_name] = df[price_value_column] * 0.93 * df[noga_rate_column]
+    df[new_pricing_column_name] = df[price_value_column] * 0.93 * 0.62
     return df
 
 
@@ -74,7 +74,7 @@ def add_twenty_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column:
 
     df[new_pricing_column_name] = (df[price_value_column] * 0.62)
     df.loc[((df[date_column].dt.hour >= 23) | (df[date_column].dt.hour < 7)), new_pricing_column_name] = df.loc[(
-            (df[date_column].dt.hour >= 23) | (df[date_column].dt.hour < 7)), price_value_column] * 0.8 * df[noga_rate_column]
+            (df[date_column].dt.hour >= 23) | (df[date_column].dt.hour < 7)), price_value_column] * 0.8 * 0.62
     return df
 
 def add_fifteen_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column: str = PRICE_VALUE_COLUMN, noga_rate_column: str = NOGA_RATE_COLUMN, date_column: str = DATE_COLUMN):
@@ -93,7 +93,7 @@ def add_fifteen_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column
                                     & (df[date_column].dt.day_of_week != 7)
                                     & (df[date_column].dt.hour >= 7)
                                     & (df[date_column].dt.hour < 17)
-                                    , price_value_column] * 0.85 * df[noga_rate_column]
+                                    , price_value_column] * 0.85 * 0.62
     return df
 
 def add_eighteen_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column: str = PRICE_VALUE_COLUMN, noga_rate_column: str = NOGA_RATE_COLUMN, date_column: str = DATE_COLUMN):
@@ -103,8 +103,7 @@ def add_eighteen_percent_off_noga_rate_price(df: pd.DataFrame, price_value_colum
 
     df[new_pricing_column_name] = (df[price_value_column] * 0.62)
     df.loc[((df[date_column].dt.hour >= 14) & (df[date_column].dt.hour < 22)), new_pricing_column_name] = df.loc[(
-                (df[date_column].dt.hour >= 14) & (df[date_column].dt.hour < 22)), price_value_column] * 0.82 * df[
-                                                                                               noga_rate_column]
+                (df[date_column].dt.hour >= 14) & (df[date_column].dt.hour < 22)), price_value_column] * 0.82 * 0.62
     return df
 
 def add_eight_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column: str = PRICE_VALUE_COLUMN, noga_rate_column: str = NOGA_RATE_COLUMN, date_column: str = DATE_COLUMN):
@@ -114,6 +113,5 @@ def add_eight_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column: 
 
     df[new_pricing_column_name] = (df[price_value_column] * 0.62)
     df.loc[((df[date_column].dt.hour >= 23) | (df[date_column].dt.hour < 17)), new_pricing_column_name] = df.loc[(
-            (df[date_column].dt.hour >= 23) | (df[date_column].dt.hour < 17)), price_value_column] * 0.92 * df[
-                                                                                                             noga_rate_column]
+            (df[date_column].dt.hour >= 23) | (df[date_column].dt.hour < 17)), price_value_column] * 0.92 * 0.62
     return df
