@@ -107,7 +107,7 @@ def add_fifteen_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column
     return df
 
 def add_eighteen_percent_off_noga_rate_price(df: pd.DataFrame, price_value_column: str = PRICE_VALUE_COLUMN, noga_rate_column: str = NOGA_RATE_COLUMN, date_column: str = DATE_COLUMN):
-    new_pricing_column_name = "18_off_noga_rate"
+    new_pricing_column_name = "18_percent_discount"
     if new_pricing_column_name in df:
         raise ValueError(f"{new_pricing_column_name} column already exists in dataframe.")
 
